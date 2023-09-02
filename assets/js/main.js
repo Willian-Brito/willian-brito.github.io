@@ -4,7 +4,6 @@ const navToggle = document.getElementById('nav-toggle');
 const navClose = document.getElementById('nav-close');
 
 /*===== MENU SHOW =====*/
-/* Validate if constant exists */
 if(navToggle) {
 
     navToggle.addEventListener('click', () => {
@@ -13,7 +12,6 @@ if(navToggle) {
 }
 
 /*===== MENU HIDDEN =====*/
-/* Validate if constant exists */
 if(navClose) {
     
     navClose.addEventListener('click', () => {
@@ -120,29 +118,162 @@ const themeButton = document.getElementById('theme-button')
 const darkTheme = 'dark-theme'
 const iconTheme = 'uil-sun'
 
-// Previously selected topic (if user selected)
 const selectedTheme = localStorage.getItem('selected-theme')
 const selectedIcon = localStorage.getItem('selected-icon')
 
-// We obtain the current theme that the interface has by validating the dark-theme class
+
 const getCurrentTheme = () => document.body.classList.contains(darkTheme) ? 'dark' : 'light'
 const getCurrentIcon = () => themeButton.classList.contains(iconTheme) ? 'uil-moon' : 'uil-sun'
 
-// We validate if the user previously chose a topic
+
 if (selectedTheme) {
-  // If the validation is fulfilled, we ask what the issue was to know if we activated or deactivated the dark
+  
   document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme)
   themeButton.classList[selectedIcon === 'uil-moon' ? 'add' : 'remove'](iconTheme)
 }
 
-// Activate / deactivate the theme manually with the button
 themeButton.addEventListener('click', () => {
-
-    // Add or remove the dark / icon theme
+    
     document.body.classList.toggle(darkTheme)
     themeButton.classList.toggle(iconTheme)
 
-    // We save the theme and the current icon that the user chose
     localStorage.setItem('selected-theme', getCurrentTheme())
     localStorage.setItem('selected-icon', getCurrentIcon())
+})
+
+/*==================== CONTACT FORM ====================*/ 
+
+const contactName = document.getElementById("contact-name");
+const contactEmail = document.getElementById("contact-email");
+const contactPhone = document.getElementById("contact-phone");
+const contactMessage = document.getElementById("contact-message");
+const errorMessage = document.getElementById("error-message");
+const fiveSeconds = 5000;
+
+
+function sendEmail() {
+
+    if( isValidation() ) {
+
+        submitForm();
+        clearFields();
+    }    
+}
+
+function isValidation() {
+
+    if(
+        contactName.value === '' || 
+        contactEmail.value === '' || 
+        contactPhone.value === '' || 
+        contactMessage.value === ''
+      ) 
+    {
+        errorMessage.textContent = 'Por favor, informe todos os campos!'
+        clearError();
+
+        return false;
+    }
+
+    return true;
+}
+
+function submitForm() {
+
+    // serviceID - templateID - #form - public key
+    emailjs.sendForm(
+        'service_lohrtku', 
+        'template_uey526o', 
+        '#contact-form', 
+        'fVpLR0HUM0YELf1Wm'
+    ).then(() => {
+
+        errorMessage.textContent = 'Mensagem enviada com sucesso!';        
+        clearError();
+
+    }, (error) => {
+
+        errorMessage.textContent = `Oops! Algo deu errado: ${error}`;
+
+        clearError();
+    });
+}
+
+function clearError() {
+
+    setTimeout(() => {
+        errorMessage.textContent = '';
+    }, fiveSeconds);
+}
+
+function clearFields() {
+
+    contactName.value = '' ;
+    contactEmail.value = '' ;
+    contactPhone.value = '' ;
+    contactMessage.value = '';
+}
+
+function clearError() {
+
+    setTimeout(() => {
+        errorMessage.textContent = "";
+    }, fiveSeconds);
+}
+
+
+/*==================== MASK FORM ====================*/
+
+function mask(e, id, mask){
+
+    var tecla=(window.event)?event.keyCode:e.which;   
+
+    if((tecla>47 && tecla<58)){
+        mascara(id, mask);
+        return true;
+    } 
+    else{
+        if (tecla==8 || tecla==0){
+            mascara(id, mask);
+            return true;
+        } 
+        else  return false;
+    }
+}
+function mascara(id, mask) {
+
+    var i = id.value.length;
+    var carac = mask.substring(i, i+1);
+    var prox_char = mask.substring(i+1, i+2);
+
+    if(i == 0 && carac != '#'){
+        insereCaracter(id, carac);
+        if(prox_char != '#')insereCaracter(id, prox_char);
+    }
+    else if(carac != '#'){
+        insereCaracter(id, carac);
+        if(prox_char != '#')insereCaracter(id, prox_char);
+    }
+
+    function insereCaracter(id, char){
+        id.value += char;
+    }
+}
+
+/*==================== FILTER FORM ====================*/
+
+const inputs = document.querySelectorAll('input, textarea')
+
+inputs.forEach(item => {
+
+    item.addEventListener('input', function() {
+
+        let filteredValue = this.value.replace(/[~`!#$%\^&*+=\\[\]\\';,/{}|\\":<>\?]/gi, '');
+    
+        this.value = filteredValue;
+    });
+
+    item.addEventListener('paste', function(e) {
+        e.preventDefault();
+    });
 })
