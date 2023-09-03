@@ -1,0 +1,81 @@
+.style-switcher {
+    position: fixed;
+    right: 0;
+    top: 60px;
+    padding: 15px;
+    width: 200px;
+    border: 1px solid var(--body-color-border);
+    background: var(--body-color-2);
+    z-index: 101;
+    border-radius: 10px;
+    transition: all .3s ease;
+    transform: translateX(100%);
+}
+
+.style-switcher .s-icon {
+    position:absolute;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    font-size: 25px;
+    right: 100%;
+    margin-right: 10px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.style-switcher.open {
+    transform: translateX(-10px);
+}
+
+/* .style-switcher .s-icon {
+    line-height: 40px;
+} */
+
+.style-switcher .style-switcher-toggler {
+    top: 0;
+    /* color: var(--title-color); */
+    color: var(--first-color);
+}
+
+.style-switcher h4 {
+    margin: 0 0 10px;
+    /* color: var(--title-color); */
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-semi-bold);
+    text-transform: capitalize;
+}
+
+.style-switcher .colors {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.style-switcher .colors span{
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.style-switcher .color-1 {
+    background: hsl(228, 69%, 61%);
+}
+
+.style-switcher .color-2 {
+    background: hsl(126, 37%, 53%);
+}
+
+.style-switcher .color-3 {
+    background:  hsl(352, 65%, 54%);
+}
+
+.style-switcher .color-4 {
+    background:  hsl(194, 58%, 41%);
+}
+
+.style-switcher .color-5 {
+    background: hsl(39, 69%, 61%);
+}

@@ -1,0 +1,9 @@
+:root {
+    --first-color: hsl(194, 58%, 41%);
+    --first-color-alt: hsl(194, 57%, 53%);
+    --container-color: hsl(194, 59%, 81%);
+    --scroll-bar-color: hsl(194, 12%, 90%);
+    --scroll-thumb-color: hsl(194, 84%, 45%);
+}
+
+/* https://www.w3schools.com/colors/colors_hsl.asp */

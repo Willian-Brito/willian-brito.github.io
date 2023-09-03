@@ -57,7 +57,7 @@ tabs.forEach(tab => {
 
 
 /*==================== PORTFOLIO SWIPER  ====================*/
-let swiper = new Swiper(".portifolio__container", {
+let swiper = new Swiper(".portfolio__container", {
     cssMode: true,
     loop: true,
     
@@ -277,3 +277,35 @@ inputs.forEach(item => {
         e.preventDefault();
     });
 })
+
+/*====================  TOGGLE STYLE SWITCHER ====================*/
+const styleSwitcherToggle = document.querySelector('.style-switcher-toggler');
+const styleSwitcher = document.querySelector('.style-switcher');
+
+styleSwitcherToggle.addEventListener('click', () => {
+
+    styleSwitcher.classList.toggle("open");  
+})
+
+window.addEventListener('scroll', () => {
+
+    if (styleSwitcher.classList.contains("open")) {
+        styleSwitcher.classList.remove("open");
+    }
+})
+
+const alternativeStyles = document.querySelectorAll('.alternate-style');
+
+function setActiveStyle(color) {
+
+    alternativeStyles.forEach((style) => {
+
+        if (color === style.getAttribute("title")) 
+        {
+            style.removeAttribute("disabled");
+            return;
+        }
+        
+        style.setAttribute("disabled", "true");
+    });
+}
