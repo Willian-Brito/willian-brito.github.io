@@ -302,6 +302,7 @@ function setActiveStyle(color) {
 
         if (color === style.getAttribute("title")) 
         {
+            localStorage.setItem('colorTheme', color);
             style.removeAttribute("disabled");
             return;
         }
@@ -309,3 +310,6 @@ function setActiveStyle(color) {
         style.setAttribute("disabled", "true");
     });
 }
+
+const color = localStorage.getItem('colorTheme') == null ? 'color-1' : localStorage.getItem('colorTheme');
+setActiveStyle(color);
