@@ -314,7 +314,8 @@ img {
 }
 
 .home__blob-img {
-  width: 335px;
+  /* width: 335px; */
+  width: 500px;
 }
 
 .home__data {
