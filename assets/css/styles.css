@@ -39,6 +39,7 @@
     --h1-font-size: 1.5rem;
     --h2-font-size: 1.25rem;
     --h3-font-size: 1.125rem;
+    --h4-font-size: 1.20rem;
     --normal-font-size: .938rem;
     --small-font-size: .813rem;
     --smaller-font-size: .75rem;
@@ -518,10 +519,21 @@ img {
   margin-right: var(--mb-0-25);
 }
 
+.qualification__icon-2 {
+  font-size: 1rem;
+  margin-right: var(--mb-0-25);
+  color: var(--first-color);
+  margin-top: -5px;
+}
+
 .qualification__data {
   display: grid;
   grid-template-columns: 1fr max-content 1fr;
   column-gap: 1.5rem;
+}
+
+.qualification__project {
+  margin-top: 20px;
 }
 
 .qualification__title {
@@ -535,10 +547,35 @@ img {
   margin-bottom: var(--mb-1);
 }
 
+.qualification__box {
+  display: flex;
+  flex-direction: row;
+}
+
+.qualification__project-title {
+  color: var(--title-color);
+}
+
+.qualification__paragraph {
+  font-size: 12px;
+}
+
 .qualification__tech {
   font-size: var(--small-font-size);
   color: var(--title-color);
   /* margin-bottom: var(--mb-1); */
+}
+
+.qualification__container-box {
+  margin-top: 30px;
+}
+
+.qualification__title-work {
+  font-size: var(--h4-font-size);
+}
+
+.qualification_project_title {
+  color: var(--title-color);
 }
 
 .qualification__calendar {
